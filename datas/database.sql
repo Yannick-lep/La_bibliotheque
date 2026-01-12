@@ -38,7 +38,7 @@
 -- +----------+-------------------+-------------------------+
 -- 
 
-DROP DATABASE bibliotheque;
+DROP DATABASE IF EXISTS bibliotheque;
 
 CREATE DATABASE IF NOT EXISTS bibliotheque;
 
