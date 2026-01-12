@@ -42,6 +42,6 @@ try {
     if (ENABLE_DEBUG === 'on') {
         showError('Erreur de connexion PDO', $error->getMessage());
     }
-    error_log('Fatal Error connecting to database');
+    error_log('Fatal Error connecting to database : ' . $error->getMessage());
     die();
 }
