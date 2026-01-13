@@ -1,6 +1,5 @@
 <?php
-include dirname(__DIR__) . '/includes/dbcoonexion.php';
-include dirname(__DIR__) . '/includes/functions.php';
+require 'includes/functions-utilisateur.php';
 
 $idsuppUtilisateur = $_GET['id'] ?? null;
 
