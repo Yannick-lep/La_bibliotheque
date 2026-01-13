@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 /*
  * Get project configuration file
  */

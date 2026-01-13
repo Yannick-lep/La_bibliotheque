@@ -1,13 +1,11 @@
 <?php
-require '../includes/dbconnexion.php';
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
-    $name = nettoyer($_POST['name']);
+    $email = nettoyer($_POST['email']);
     $password = trim($_POST['password']);
 
-    $ret = login_user($pdo, $name, $password);
+    $ret = login_user($pdo, $email, $password);
     if ($ret['success'] === true) {
-        redirect('/public/index.php');
+        redirect('?page=home');
         exit;
     }
 }
@@ -17,7 +15,7 @@ if (isset($_SESSION['logged']) && $_SESSION['logged']) {
 
     logout_user();
 
-    redirect("/reservations/search-reservations.php");
+    redirect("?page=home");
     exit;
 }
 

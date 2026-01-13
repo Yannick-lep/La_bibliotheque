@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require 'includes/dbconnexion.php';
 require 'config/routes.php';
 
