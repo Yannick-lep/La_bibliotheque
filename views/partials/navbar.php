@@ -4,31 +4,31 @@
             <div class="logo">
                 <a href="<?= WEB_ROOT . "/reservations/search-reservations.php" ?>"
                     style="text-decoration: none; color: #b0dcb0;">
-                    <h1 style="margin-bottom: 0; color: #b0dcb0; font-size: 2rem; letter-spacing: 0.2rem;">La Biblithèque</h1>
+                    <h1 style="margin-bottom: 0; color: #b0dcb0; font-size: 2rem; letter-spacing: 0.2rem;">La Bibliothèque</h1>
                 </a>
             </div>
 
             <?php if (is_admin()) { ?>
                 <div class="menu-item">
-                    <a href="<?= WEB_ROOT . "/velos/list-velos.php" ?>">
-                        Velos
+                    <a href="<?= WEB_ROOT . "?page=list-livres" ?>">
+                        Livres
                     </a>
                 </div>
 
                 <div class="menu-item">
-                    <a href="<?= WEB_ROOT . "/users/list-users.php" ?>">
+                    <a href="<?= WEB_ROOT . "?page=list-utilisateur" ?>">
                         Utilisateurs
                     </a>
                 </div>
 
                 <div class="menu-item">
-                    <a href="<?= WEB_ROOT . "/reservations/list-reservations.php" ?>">
+                    <a href="<?= WEB_ROOT . "?page=list-emprunts" ?>">
                         Reservations
                     </a>
                 </div>
 
                 <div class="menu-item">
-                    <a href="<?= WEB_ROOT . "/login/login.php" ?>">
+                    <a href="<?= WEB_ROOT . "?page=login" ?>">
                         Déconnexion
                     </a>
                 </div>
