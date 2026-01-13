@@ -1,0 +1,14 @@
+### Cloner le Repos
+
+Aller dans le repertoire nouvellement crée
+
+### Utilisation de Docker pour tester le projet
+
+Lancer la stack avec
+```bash
+docker compose up -d --build
+```
+
+### Ensuite aller dans un navigateur sur l'url
+
+    http://localhost:8080
