@@ -7,3 +7,9 @@
     <link rel="stylesheet" href="<?= WEB_ROOT . '/assets/css/style.css' ?>">
 </head>
 <body>
+
+<div class="wrapper">
+
+    <?php require PHP_ROOT . "/views/partials/navbar.php"; ?>
+
+    <main>
