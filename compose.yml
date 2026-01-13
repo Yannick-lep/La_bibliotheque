@@ -1,0 +1,46 @@
+name: la_bibliotheque
+
+services:
+  web:
+    build: ./docker
+    container_name: php-web-biblio
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html:Z
+    depends_on:
+      - db
+    networks:
+      - la_bibliotheque-network
+
+  db:
+    image: mysql:8.0
+    container_name: php-mysql-biblio
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: phpdb
+      MYSQL_USER: phpuser
+      MYSQL_PASSWORD: phppass
+    volumes:
+      - db-data:/var/lib/mysql:Z
+    ports:
+      - "3306:3306"
+    networks:
+      - la_bibliotheque-network
+
+  adminer:
+    image: adminer:latest
+    container_name: php-adminer-biblio
+    ports:
+      - "8081:8080"
+    networks:
+      - la_bibliotheque-network
+    depends_on:
+      - db
+
+volumes:
+  db-data:
+
+networks:
+  la_bibliotheque-network:
+    driver: bridge
