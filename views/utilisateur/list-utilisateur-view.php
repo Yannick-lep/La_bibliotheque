@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Utilisateur</title>
-</head>
-<body>
-    <main class="container">
+<?php
+include 'views/partials/header.php';
+?>
+    
         <?php
-        require PATH_PROJET .'/views/partials/header.php';
+        
         if (count($utilisateurArray) === 0) :
             echo '<h3>Aucun utilisateur ! </h3>';
             echo '<a href="' .WEB_ROOT . '/utilisateur/add-utilisateur.php" role="button"> Ajouter un utilisateur</a>';
@@ -37,10 +32,10 @@
                         <td><?= htmlspecialchars($utilisateur['prenom']); ?></td>
                         <td><?= htmlspecialchars($utilisateur['email']); ?></td>
                         <td>
-                            <a href="<?= WEB_ROOT . '/utilisateur/edit-utilisateur.php?id=' .$utilisateur['id_utilisateur'] ?>"
+                            <a href="<?= WEB_ROOT . '/utilisateur/edit-utilisateur.php?id=' .$utilisateur['id_utilisateurs'] ?>"
                             role="button">Edit</a>
 
-                            <a href="<?= WEB_ROOT . '/utilisateur/del-utilisateur.php?id=' .$utilisateur['id_utilisateur'] ?>"
+                            <a href="<?= WEB_ROOT . '/utilisateur/del-utilisateur.php?id=' .$utilisateur['id_utilisateurs'] ?>"
                             role="button"
                             onclick="return confirm('Etes-vous sur de vouloir supprimer cet utilisateur ?');">Supprimer</a>
                         </td>
@@ -49,6 +44,5 @@
             </tbody>
         </table>
 
-    </main>
-</body>
-</html>
+<?php 
+include 'views/partials/footer.php'; 

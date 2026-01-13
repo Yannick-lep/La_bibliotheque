@@ -1,6 +1,5 @@
 <?php 
-include dirname(__DIR__) . '/includes/dbconnexion.php';
-include dirname(__DIR__) . '/includes/functions.php';
+require 'includes/functions-utilisateur.php';
 
 // Vérifie si le formulaire a été envoyé
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['envoyer'])){

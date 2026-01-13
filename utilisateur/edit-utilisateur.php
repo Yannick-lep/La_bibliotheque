@@ -1,6 +1,5 @@
 <?php
-include dirname(__DIR__) . '/includes/dbconnexion.php';
-include dirname(__DIR__) . '/includes/functions.php';
+require 'includes/functions-utilisateur.php';
 
 $idUtilisateur = $_GET['id'] ?? null;
 
@@ -19,7 +18,7 @@ $prenom = $utilisateur['prenom'];
 $email = $utilisateur['email'];
 
 // Traitement du formulaire
-if ($_SERVER['REQUETS_METHOD'] === 'POST' && isset($_POST['envoyer'])){
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['envoyer'])){
 
     $nom = nettoyer($_POST['nom']);
     $prenom = nettoyer($_POST['prenom']);
@@ -36,8 +35,10 @@ if ($_SERVER['REQUETS_METHOD'] === 'POST' && isset($_POST['envoyer'])){
         updateUtilisateurSansPassword($pdo, $nom, $prenom, $email, $idUtilisateur);
     }
 
-
+    // Redirection après modification
     header("Location:" . WEB_ROOT . "/utilisateur/list-utilisateur.php");
     exit;
 }
+
+// Affichage du formulaire
 include PATH_PROJET .'/views/utilisateur/edit-utilisateur-view.php';
