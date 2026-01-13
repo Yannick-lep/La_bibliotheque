@@ -2,6 +2,7 @@
 
 $routes = [
     'home' => 'home.php',
+    '404' => '404.php',
     'login' => 'login/login.php',
     'add-livres' => 'livres/add-livres.php',
     'del-livres' => 'livres/del-livres.php',
