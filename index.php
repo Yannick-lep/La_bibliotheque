@@ -1,5 +1,6 @@
 <?php
 require 'includes/dbconnexion.php';
+require 'config/routes.php';
 
 require 'views/partials/header.php';
 ?>
