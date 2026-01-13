@@ -2,23 +2,23 @@
 include dirname(__DIR__) . '/includes/dbconnexion.php';
 include dirname(__DIR__) . '/includes/functions.php';
 
-$idEditUtilisateur = $_GET['id'] ?? null;
+$idUtilisateur = $_GET['id'] ?? null;
 
-if (!$idEditUtilisateur || !is_numeric($idEditUtilisateur)){
-    dd("cet utilisateur n'existe pas !!!");
+if (!$idUtilisateur || !is_numeric($idUtilisateur)){
+    dd("Utilisateur introuvable");
 }
 
-$utilisateur = getUtilisateur($pdo, $idEditUtilisateur);
+$utilisateur = getUtilisateur($pdo, $idUtilisateur);
 
 if (!$utilisateur){
-    dd("Cet utilisateur n'existe pas");
+    dd("Utilisateur introuvable");
 }
 
 $nom = $utilisateur['nom'];
 $prenom = $utilisateur['prenom'];
 $email = $utilisateur['email'];
 
-
+// Traitement du formulaire
 if ($_SERVER['REQUETS_METHOD'] === 'POST' && isset($_POST['envoyer'])){
 
     $nom = nettoyer($_POST['nom']);
@@ -26,14 +26,14 @@ if ($_SERVER['REQUETS_METHOD'] === 'POST' && isset($_POST['envoyer'])){
     $email = nettoyer($_POST['email']);
     $password = trim($_POST['password']);
 
+    // Si un nouveau mot de passe est saisi
     if (!empty($password)) {
-        // Nouveau mot de passe
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        updateUtilisateur($pdo, $nom, $prenom, $passwordHash, $idEditUtilisateur);
+        updateUtilisateur($pdo, $nom, $prenom, $email, $passwordHash, $idUtilisateur);
 
     } else {
-        // Sinon on ne touche pas au mot de passe 
-        updateUtilisateurSansPassword($pdo, $nom, $prenom, $email, $idEditUtilisateur);
+        // Sinon on garde l'ancien mot de passe
+        updateUtilisateurSansPassword($pdo, $nom, $prenom, $email, $idUtilisateur);
     }
 
 
