@@ -3,13 +3,7 @@
 require_once PHP_ROOT . '/includes/functions-utilisateur.php';
 
 $errors = [];
-$idUtilisateur = $_GET['id'] ?? null;
-
-if (!$idUtilisateur || !is_numeric($idUtilisateur)) {
-    dd("Utilisateur introuvable");
-}
-
-$idUtilisateur = (int) $idUtilisateur;
+$idUtilisateur = $_SESSION['id_utilisateur'];
 $utilisateur = getUtilisateur($pdo, $idUtilisateur);
 
 if (!$utilisateur) {
@@ -31,9 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['envoyer'])) {
 
     // Vérifications
     if (!empty($password) || !empty($password_confirm)) {
-        if ($password !== $password_confirm) {
+        if ($password !== $password_confirm){
             $errors[] = "Les mots de passe ne correspondent pas.";
         }
+
         if (strlen($password) < 6) {
             $errors[] = "Le mot de passe doit contenir au moins 6 caractères.";
         }
@@ -55,10 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['envoyer'])) {
         }
 
         // Redirection après succès
-        redirect('?page=list-utilisateur');
+        redirect("?page=mes-livres");
         exit;
     }
 }
 
 // Affichage du formulaire
-include PHP_ROOT . '/views/utilisateur/edit-utilisateur-view.php';
+include PHP_ROOT . '/views/utilisateur/profil-utilisateur-view.php';

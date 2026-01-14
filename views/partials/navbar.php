@@ -52,7 +52,7 @@
                 </div>
             <?php } elseif (is_logged_in()) { ?>
                 <div class="menu-item">
-                    <a href="<?= WEB_ROOT . "?page=edit-profil.php&id=" . $_SESSION['id_utilisateur'] ?>">
+                    <a href="<?= WEB_ROOT . "?page=profil-utilisateur" ?>">
                         Profil
                     </a>
                 </div>
@@ -62,6 +62,13 @@
                         Mes emprunts
                     </a>
                 </div>
+
+                <div class="menu-item">
+                    <a href="<?= WEB_ROOT . "?page=search-livres" ?>">
+                        Rechercher
+                    </a>
+                </div>
+
             <?php } else { ?>
                 <div class="menu-item">
                     <a href="<?= WEB_ROOT . "?page=register" ?>">
@@ -92,7 +99,7 @@
             <?php if (is_admin()) { ?>
                 <div class="admin">Administration</div>
             <?php } ?>
-            
+
             <?php if (is_employe()) { ?>
                 <div class="employe">Employé</div>
             <?php } ?>
