@@ -11,7 +11,7 @@ function listerUtilisateur($pdo)
 function getUtilisateur($pdo, $idParam)
 {
     $sql = "SELECT * FROM utilisateur WHERE id_utilisateur = :id";
-    $stmt = $pdo->prepare(sql);
+    $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':id' => $idParam
     ]);
