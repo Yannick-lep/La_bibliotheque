@@ -52,13 +52,13 @@
                 </div>
             <?php } elseif (is_logged_in()) { ?>
                 <div class="menu-item">
-                    <a href="<?= WEB_ROOT . "?page=edit-profil.php&id=" . $_SESSION['id_utilisateurs'] ?>">
+                    <a href="<?= WEB_ROOT . "?page=edit-profil.php&id=" . $_SESSION['id_utilisateur'] ?>">
                         Profil
                     </a>
                 </div>
 
                 <div class="menu-item">
-                    <a href="<?= WEB_ROOT . "?page=list-meslivres" ?>">
+                    <a href="<?= WEB_ROOT . "?page=mes-livres" ?>">
                         Mes emprunts
                     </a>
                 </div>

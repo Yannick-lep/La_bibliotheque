@@ -19,5 +19,6 @@ $routes = [
     'edit-emprunts' => 'emprunts/edit-emprunts.php',
     'list-emprunts' => 'emprunts/list-emprunts.php',
     'depart-emprunts' => 'emprunts/depart-emprunts.php',
-    'retour-emprunts' => 'emprunts/retour-emprunts.php'
-];
+    'retour-emprunts' => 'emprunts/retour-emprunts.php',
+    'mes-livres' => 'livres/mes-livres.php'
+    ];
