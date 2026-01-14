@@ -10,9 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $emprunt['id_utilisateur'] = nettoyer($_POST['id_utilisateur']);
     $emprunt['date_sortie'] = nettoyer($_POST['date_sortie']);
     $emprunt['date_rendu'] = nettoyer($_POST['date_rendu']);
-    
-    if ($emprunt['date_rendu'] === '')
-        dd("pas de date");
     $emprunt['statut'] = nettoyer($_POST['statut']);
 
     $state = updateEmprunt($pdo, $emprunt);
