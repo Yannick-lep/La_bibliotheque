@@ -7,9 +7,18 @@ if (!$idsuppUtilisateur || !is_numeric($idsuppUtilisateur)) {
     dd("cet utilisateur n'existe pas !");
 }
 
+$nbUtilisateurs = compterUtilisateurs($pdo);
+
+if ($nbUtilisateurs <= 1) {
+    dd("Impossible de supprimer le dernier utilisateur.");
+}
+
+
 $suppResultUtilisateur =supprimerUtilisateur($pdo,$idsuppUtilisateur);
 
 if($suppResultUtilisateur){
-    header("Location: " .WEB_ROOT ."/utilisateur/list-utilisateur.php");
+    redirect('?page=list-utilisateur');
     exit;
 }
+
+dd("Erreur lors de la suppression de l'utilisateur.");

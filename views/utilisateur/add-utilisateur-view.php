@@ -1,35 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Utilisateur</title>
-</head>
-<body>
-    <main class="container">
-        <h1>Ajouter un utilisateur</h1>
-        <form action="" method="POST">
-            <div>
-                <label for="nom">Nom</label>
-                <input type="text" name="nom" required> 
-            </div>
-             <div>
-                <label for="prenom">Prenom</label>
-                <input type="text" name="prenom" required> 
-            </div>
-             <div>
-                <label for="email">Email</label>
-                <input type="text" name="email" required> 
-            </div>
-             <div>
-                <label for="nom">Mot de passe</label>
-                <input type="password" name="password" id="password" required> 
-            </div>
-             <div>
-                <button type="submit" name="envoyer">Ajouter utilisateur</button>
-            </div>
-        </form>
-
-    </main>
-</body>
-</html>
+<?php
+include PHP_ROOT . '/views/partials/header.php'; ?>
+<h1>Ajouter un utilisateur</h1>
+<form action="" method="POST">
+    <div>
+        <label for="nom">Nom</label>
+        <input type="text" name="nom" id="nom" required>
+    </div>
+    <div>
+        <label for="prenom">Prenom</label>
+        <input type="text" name="prenom" id="prenom" required>
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" required>
+    </div>
+    <div>
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password" required>
+    </div>
+    <div>
+        <label for="password_confirm">Confirmer mot de passe</label>
+        <input type="password" name="password_confirm" id="password_confirm" required>
+    </div>
+    <div>
+        <label for="role">Rôle</label>
+        <select name="role" id="role">
+            <option value="abonne" selected>Abonne</option>
+            <option value="employe">Employe</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Ajouter utilisateur" name="envoyer">
+    </div>
+</form>
+<?php include PHP_ROOT . '/views/partials/footer.php'; ?>

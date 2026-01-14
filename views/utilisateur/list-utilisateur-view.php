@@ -12,9 +12,10 @@ include 'views/partials/header.php';
         ?>
 
         <h1 class="title">Liste des utilisateurs</h1>
-        
-        <a href="<?= WEB_ROOT . '/utilisateur/add-utilisateur.php' ?>"
-        role="button"> Ajouter un utilisateur</a>
+        <div class="button">
+            <a href="?page=add-utilisateur"
+            role="button"> Ajouter un utilisateur</a>
+        </div>
 
         <table>
             <thead>

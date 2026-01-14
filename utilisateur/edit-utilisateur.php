@@ -1,5 +1,6 @@
 <?php
-require PHP_ROOT . 'includes/functions-utilisateur.php';
+
+require_once PHP_ROOT . '/includes/functions-utilisateur.php';
 
 $errors = [];
 $idUtilisateur = $_GET['id'] ?? null;
@@ -8,6 +9,7 @@ if (!$idUtilisateur || !is_numeric($idUtilisateur)) {
     dd("Utilisateur introuvable");
 }
 
+$idUtilisateur = (int) $idUtilisateur;
 $utilisateur = getUtilisateur($pdo, $idUtilisateur);
 
 if (!$utilisateur) {
@@ -18,42 +20,42 @@ $nom = $utilisateur['nom'];
 $prenom = $utilisateur['prenom'];
 $email = $utilisateur['email'];
 
-
 // Traitement du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['envoyer'])) {
 
-    $nom = nettoyer($_POST['nom']);
-    $prenom = nettoyer($_POST['prenom']);
-    $email = nettoyer($_POST['email']);
-    $password = trim($_POST['password']);
-    $password_confirm = trim($_POST['password_confirm']);
+    $nom = nettoyer($_POST['nom'] ?? '');
+    $prenom = nettoyer($_POST['prenom'] ?? '');
+    $email = nettoyer($_POST['email'] ?? '');
+    $password = trim($_POST['password'] ?? '');
+    $password_confirm = trim($_POST['password_confirm'] ?? '');
 
-    // Ssi un seul des deux champs est rempli
+    // Vérifications
     if (!empty($password) || !empty($password_confirm)) {
-
         if ($password !== $password_confirm){
             $errors[] = "Les mots de passe ne correspondent pas.";
         }
-
         if (strlen($password) < 6) {
-            $errors[] = "Le mot de passe doit contenir au moins 6 carractères.";
+            $errors[] = "Le mot de passe doit contenir au moins 6 caractères.";
         }
     }
 
-    if (empty($erros)){
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Email invalide.";
+    }
 
-        if (empty($password) && empty($password_confirm)){
+    // Si aucune erreur, mise à jour
+    if (empty($errors)) {
+
+        if (empty($password) && empty($password_confirm)) {
             updateUtilisateurSansPassword($pdo, $nom, $prenom, $email, $idUtilisateur);
-
-        }
-    } else {
-
+        } else {
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
             updateUtilisateur($pdo, $nom, $prenom, $email, $passwordHash, $idUtilisateur);
-        
-            // Redirection après succès
-            header("Location:" . WEB_ROOT . "/utilisateur/list-utilisateur.php");
-            exit;
+        }
+
+        // Redirection après succès
+        header("Location: " . WEB_ROOT . "/utilisateur/list-utilisateur.php");
+        exit;
     }
 }
 
