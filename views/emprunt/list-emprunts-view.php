@@ -7,6 +7,7 @@
 </div>
 
 <?php if (empty($emprunts)) { ?>
+<?php } ?>
 
 <table>
     <thead>
