@@ -136,10 +136,18 @@ header {
     gap: 1rem;
     align-items: center;
 
-    .admin {
+    .admin,
+    .employe {
         padding: 1rem;
-        border: 2px solid lightcoral;
         border-radius: 0.5rem;
+    }
+
+    .admin {
+        border: 2px solid lightcoral;        
+    }
+
+    .employe {
+        border: 2px solid lightgreen;
     }
 
     .avatar {

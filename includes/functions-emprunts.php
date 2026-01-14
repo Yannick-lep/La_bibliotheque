@@ -63,3 +63,60 @@ function updateEmprunt($pdo, $emprunt)
 
     return $state;
 }
+
+
+function getEmpruntsEnCours($pdo)
+{
+    $sql = "SELECT e.id_emprunt, e.date_sortie, e.id_livre, e.id_utilisateur, u.nom, u.prenom, l.titre
+            FROM emprunt e
+            LEFT JOIN utilisateur u
+            ON u.id_utilisateur = e.id_utilisateur
+            LEFT JOIN livre l
+            ON e.id_livre = l.id_livre
+            WHERE date_sortie IS NOT NULL AND date_rendu IS NULL";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    $emprunts = $stmt->fetchAll();
+
+    return $emprunts;
+}
+
+function validateRetourEmprunt($pdo, $idEmprunt)
+{
+    $sql = "UPDATE emprunt SET date_rendu = NOW() WHERE id_emprunt = :id_emprunt";
+    $stmt = $pdo->prepare($sql);
+    $state = $stmt->execute( [
+        ':id_emprunt' => $idEmprunt
+    ]);
+
+    return $state;
+}
+
+function validateDepartEmprunt($pdo, $idEmprunt)
+{
+    $sql = "UPDATE emprunt SET date_sortie = NOW() WHERE id_emprunt = :id_emprunt";
+    $stmt = $pdo->prepare($sql);
+    $state = $stmt->execute( [
+        ':id_emprunt' => $idEmprunt
+    ]);
+
+    return $state;
+}
+
+function getEmpruntsEnAttente($pdo)
+{
+    $sql = "SELECT e.id_emprunt, e.date_sortie, e.id_livre, e.id_utilisateur, u.nom, u.prenom, l.titre
+            FROM emprunt e
+            LEFT JOIN utilisateur u
+            ON u.id_utilisateur = e.id_utilisateur
+            LEFT JOIN livre l
+            ON e.id_livre = l.id_livre
+            WHERE date_sortie IS NULL AND date_rendu IS NULL";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    $emprunts = $stmt->fetchAll();
+
+    return $emprunts;
+}

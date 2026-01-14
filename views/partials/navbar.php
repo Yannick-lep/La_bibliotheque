@@ -88,8 +88,13 @@
             <?php if (is_logged_in()) { ?>
                 <div><?= $_SESSION['email'] ?></div>
             <?php } ?>
+
             <?php if (is_admin()) { ?>
                 <div class="admin">Administration</div>
+            <?php } ?>
+            
+            <?php if (is_employe()) { ?>
+                <div class="employe">Employé</div>
             <?php } ?>
         </div>
     </div>

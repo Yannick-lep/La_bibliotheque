@@ -3,6 +3,7 @@
 $routes = [
     'home' => 'home.php',
     '404' => '404.php',
+    '500' => '500.php',
     'login' => 'login/login.php',
     'register' => 'login/register.php',
     'add-livres' => 'livres/add-livres.php',
@@ -20,5 +21,7 @@ $routes = [
     'list-emprunts' => 'emprunts/list-emprunts.php',
     'depart-emprunts' => 'emprunts/depart-emprunts.php',
     'retour-emprunts' => 'emprunts/retour-emprunts.php',
-    'mes-livres' => 'livres/mes-livres.php'
+    'mes-livres' => 'livres/mes-livres.php',
+    'validate-retour-emprunts' => 'emprunts/validate-retour-emprunts.php',
+    'validate-depart-emprunts' => 'emprunts/validate-depart-emprunts.php'
     ];
