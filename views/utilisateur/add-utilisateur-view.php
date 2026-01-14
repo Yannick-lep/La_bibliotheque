@@ -1,6 +1,7 @@
-<?php
-include PHP_ROOT . '/views/partials/header.php'; ?>
-<h1>Ajouter un utilisateur</h1>
+<?php include PHP_ROOT . '/views/partials/header.php'; ?>
+
+<h1 class="title">Ajouter un utilisateur</h1>
+
 <form action="" method="POST">
     <div>
         <label for="nom">Nom</label>
@@ -27,10 +28,12 @@ include PHP_ROOT . '/views/partials/header.php'; ?>
         <select name="role" id="role">
             <option value="abonne" selected>Abonne</option>
             <option value="employe">Employe</option>
+            <option value="admin">Administrateur</option>
         </select>
     </div>
     <div>
         <input type="submit" value="Ajouter utilisateur" name="envoyer">
     </div>
 </form>
+
 <?php include PHP_ROOT . '/views/partials/footer.php'; ?>

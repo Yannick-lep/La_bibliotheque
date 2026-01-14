@@ -38,28 +38,3 @@ CREATE TABLE emprunt(
     statut varchar(50), 
     PRIMARY KEY (id_emprunt)
 ) ENGINE=INNODB;
-
---
--- Example test data set
---
-
-INSERT INTO utilisateur (nom, prenom, email, password, role) VALUES
-('Dupont', 'Jean', 'jean.dupont@example.com', MD5('password123'), 'abonne'),
-('Martin', 'Claire', 'claire.martin@example.com', MD5('password456'), 'employe'),
-('Bernard', 'Luc', 'luc.bernard@example.com', MD5('password789'), 'abonne'),
-('Leroy', 'Sophie', 'sophie.leroy@example.com', MD5('password321'), 'employe'),
-('Admin', 'Route', 'admin@example.com', MD5('admin123'), 'admin');
-
-INSERT INTO livre (auteur, titre, resume, genre) VALUES
-('Hugo', 'Les Misérables', 'Un roman sur la lutte pour la justice sociale.', 'Roman'),
-('Dumas', 'Le Comte de Monte-Cristo', 'Une histoire de vengeance et de rédemption.', 'Roman'),
-('Orwell', '1984', 'Un roman dystopique sur un futur totalitaire.', 'Science-fiction'),
-('Rowling', 'Harry Potter à l''école des sorciers', 'L''aventure d''un jeune sorcier.', 'Fantasy'),
-('Ecco', 'Le nom de la rose', 'Une aventure médiévale', 'Historique');
-
-INSERT INTO emprunt (id_livre, id_utilisateur, date_sortie, date_rendu, statut) VALUES
-(1, 1, '2026-01-01', NULL, 'en cours'),
-(2, 2, '2026-01-05', '2026-01-12', 'terminé'),
-(3, 3, '2026-01-10', NULL, 'en cours'),
-(4, 4, '2026-01-15', NULL, 'en cours'),
-(5, 1, NULL, NULL, 'en attente');

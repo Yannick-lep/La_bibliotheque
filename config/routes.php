@@ -16,6 +16,7 @@ $routes = [
     'del-utilisateur' => 'utilisateur/del-utilisateur.php',
     'edit-utilisateur' => 'utilisateur/edit-utilisateur.php',
     'list-utilisateur' => 'utilisateur/list-utilisateur.php',
+    'profil-utilisateur' => 'utilisateur/profil-utilisateur.php',
     'add-emprunts' => 'emprunts/add-emprunts.php',
     'del-emprunts' => 'emprunts/del-emprunts.php',
     'edit-emprunts' => 'emprunts/edit-emprunts.php',

@@ -4,7 +4,7 @@ require_once PHP_ROOT . '/includes/functions-utilisateur.php';
 
 try {
     $pdo = new PDO(
-        "mysql:host=" .DB_HOSTNAME . ";dbname=" .DB_NAME . ";charset=" .DB_CHARSET,
+        "mysql:host=" . DB_HOSTNAME . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET,
         DB_USER,
         DB_PASSWORD
     );
@@ -35,7 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['envoyer'])) {
     }
 
     // Hashage sécurisé du mot de passe
-    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    // $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    $passwordHash = md5($password);
 
     // Insertion de l'utilisateur en base
     $success = ajoutUtilisateur(

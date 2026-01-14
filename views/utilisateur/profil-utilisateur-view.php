@@ -1,17 +1,6 @@
-<?php
-include PHP_ROOT . '/views/partials/header.php';
-?>
-<h1 class="title">Editer un utilisateur</h1>
+<?php include PHP_ROOT . '/views/partials/header.php'; ?>
 
-<?php if (!empty($errors)) : ?>
-    <div>
-        <ul>
-            <?php foreach ($errors as $error) : ?>
-                <li><?= htmlspecialchars($error) ?></li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-<?php endif; ?>
+<h1 class="title">Editer mon profil</h1>
 
 <form action="" method="POST">
     <div>
@@ -32,18 +21,22 @@ include PHP_ROOT . '/views/partials/header.php';
     </div>
     <div>
         <label for="password_confirm" class="form-label">Confirmation mot de passe</label>
-        <input type="password" name="password_confirm" id="password_confirm" class="form-control" placeholder="confirmer mot de passe">
+        <input type="password" name="password_confirm" id="password_confirm" class="form-control"
+            placeholder="confirmer mot de passe">
     </div>
     <div>
-        <label for="role">Rôle</label>
-        <select name="role" id="role">
-            <option value="abonne" selected>Abonne</option>
-            <option value="employe">Employe</option>
-            <option value="admin">Administrateur</option>
-        </select>
+        <input type="submit" value="Mettre à jour" name="envoyer">
     </div>
-    <div>
-        <input type="submit" value="Editer Utilisateur" name="envoyer">
-    </div>
+
+    <?php if (!empty($errors)): ?>
+        <div class="error">
+            <ul>
+                <?php foreach ($errors as $error): ?>
+                    <li><?= htmlspecialchars($error) ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 </form>
+
 <?php include PHP_ROOT . '/views/partials/footer.php';
