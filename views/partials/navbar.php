@@ -2,9 +2,9 @@
     <div class="menu-frame">
         <div class="menu">
             <div class="logo">
-                <a href="<?= WEB_ROOT . "?page=search-livres" ?>"
-                    style="text-decoration: none; color: #b0dcb0;">
-                    <h1 style="margin-bottom: 0; color: #b0dcb0; font-size: 1.8rem; letter-spacing: 0.2rem;">La Bibliothèque</h1>
+                <a href="<?= WEB_ROOT . "?page=search-livres" ?>" style="text-decoration: none; color: #b0dcb0;">
+                    <h1 style="margin-bottom: 0; color: #b0dcb0; font-size: 1.8rem; letter-spacing: 0.2rem;">La
+                        Bibliothèque</h1>
                 </a>
             </div>
 
@@ -24,6 +24,24 @@
                 <div class="menu-item">
                     <a href="<?= WEB_ROOT . "?page=list-emprunts" ?>">
                         Emprunts
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <a href="<?= WEB_ROOT . "?page=login" ?>">
+                        Déconnexion
+                    </a>
+                </div>
+            <?php } elseif (is_employe()) { ?>
+                <div class="menu-item">
+                    <a href="<?= WEB_ROOT . "?page=depart-emprunts" ?>">
+                        Emprunts
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <a href="<?= WEB_ROOT . "?page=retour-emprunts" ?>">
+                        Retours
                     </a>
                 </div>
 
@@ -63,8 +81,8 @@
             <div class="avatar">
                 <a href="<?= WEB_ROOT . '?page=login' ?>">
                     <img src="<?= is_logged_in() ?
-                                    WEB_ROOT . '/assets/img/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg' :
-                                    WEB_ROOT . '/assets/img/no_accounts_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg' ?>" alt="">
+                        WEB_ROOT . '/assets/img/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg' :
+                        WEB_ROOT . '/assets/img/no_accounts_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg' ?>" alt="">
                 </a>
             </div>
             <?php if (is_logged_in()) { ?>

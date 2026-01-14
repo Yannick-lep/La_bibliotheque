@@ -6,6 +6,11 @@ function is_logged_in()
 
 function is_admin()
 {
+    return is_logged_in() && $_SESSION['role'] === 'admin';
+}
+
+function is_employe()
+{
     return is_logged_in() && $_SESSION['role'] === 'employe';
 }
 

@@ -14,7 +14,7 @@ CREATE TABLE utilisateur(
     prenom varchar(45) NOT NULL,
     email varchar(45) NOT NULL,
     password varchar(60) NOT NULL,
-    role ENUM('abonne', 'employe') DEFAULT 'abonne',
+    role ENUM('abonne', 'employe', 'admin') DEFAULT 'abonne',
     PRIMARY KEY (id_utilisateur)
 ) ENGINE=INNODB;
 
@@ -47,7 +47,8 @@ INSERT INTO utilisateur (nom, prenom, email, password, role) VALUES
 ('Dupont', 'Jean', 'jean.dupont@example.com', MD5('password123'), 'abonne'),
 ('Martin', 'Claire', 'claire.martin@example.com', MD5('password456'), 'employe'),
 ('Bernard', 'Luc', 'luc.bernard@example.com', MD5('password789'), 'abonne'),
-('Leroy', 'Sophie', 'sophie.leroy@example.com', MD5('password321'), 'employe');
+('Leroy', 'Sophie', 'sophie.leroy@example.com', MD5('password321'), 'employe'),
+('Admin', 'Route', 'admin@example.com', MD5('admin123'), 'admin');
 
 INSERT INTO livre (auteur, titre, resume, genre) VALUES
 ('Hugo', 'Les Misérables', 'Un roman sur la lutte pour la justice sociale.', 'Roman'),
