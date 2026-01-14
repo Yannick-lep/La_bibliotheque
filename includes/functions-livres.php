@@ -53,27 +53,25 @@ function supprimerLivre($pdo, $id)
     return $suppResult;
 }
 
-function searchLivres(PDO $pdo, string $searchTerm): array
-{
-    $sql = "
-        SELECT *
-        FROM livre
-        WHERE auteur LIKE :search1
-           OR titre LIKE :search2
-           OR `genre` LIKE :search3
-        ORDER BY id_livre DESC
-    ";
+function searchLivres($pdo, $searchTerm) {
+    if (!$searchTerm) {
+        $stmt = $pdo->query("SELECT * FROM livre ORDER BY titre");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-    $stmt = $pdo->prepare($sql);
-
-    $like = '%' . $searchTerm . '%';
+    $stmt = $pdo->prepare("
+        SELECT * FROM livre
+        WHERE titre LIKE :searchTitre
+           OR auteur LIKE :searchAuteur
+        ORDER BY titre
+    ");
 
     $stmt->execute([
-        ':search1' => $like,
-        ':search2' => $like,
-        ':search3' => $like
+        ':searchTitre'  => "%$searchTerm%",
+        ':searchAuteur' => "%$searchTerm%"
     ]);
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 

@@ -1,18 +1,16 @@
 <?php
 include 'includes/functions-livres.php';
-$searchTerm = $_GET['search'] ?? '';
-$livres = searchLivres($pdo, $searchTerm);
-dd($livres);
-include 'views/partials/header.php';
-?>
-<form method="GET">
-    <input 
-        type="text" 
-        name="search" 
-        placeholder="Rechercher un livre..."
-    >
-    <button type="submit">🔍</button>
-</form>
-<?php
-include 'views/partials/footer.php';
 
+$livres = [];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $searchTerm = trim($_POST['search'] ?? '');
+    if ($searchTerm !== '') {
+        $livres = searchLivres($pdo, $searchTerm);
+    }
+} else {
+    $searchTerm = '';
+}
+
+
+
+include 'views/livres/search-livres-view.php'; ?>

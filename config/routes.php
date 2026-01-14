@@ -10,6 +10,7 @@ $routes = [
     'edit-livres' => 'livres/edit-livres.php',
     'list-livres' => 'livres/list-livres.php',
     'search-livres' => 'livres/search-livres.php',
+    'resultats-livres' => 'livres/resultats-livres.php',
     'add-utilisateur' => 'utilisateur/add-utilisateur.php',
     'del-utilisateur' => 'utilisateur/del-utilisateur.php',
     'edit-utilisateur' => 'utilisateur/edit-utilisateur.php',
