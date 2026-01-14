@@ -19,7 +19,7 @@
         <input type="date" name="date_sortie" id="date_sortie" value="<?= $emprunt['date_sortie'] ?>">
     </div>
     <div>
-        <label for="date_rendu">Date de retyour</label>
+        <label for="date_rendu">Date de retour</label>
         <input type="date" name="date_rendu" id="date_rendu" value="<?= $emprunt['date_rendu'] ?>">
     </div>
     <div>
