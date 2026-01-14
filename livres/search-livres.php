@@ -11,4 +11,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $searchTerm = '';
 }
 
-include 'views/livres/search-livres-view.php'; ?>
+include 'views/livres/search-livres-view.php';
