@@ -11,7 +11,7 @@ include 'views/partials/header.php';
         endif;
         ?>
 
-        <h1>Liste des utilisateurs</h1>
+        <h1 class="title">Liste des utilisateurs</h1>
         <div class="button">
             <a href="?page=add-utilisateur"
             role="button"> Ajouter un utilisateur</a>
@@ -20,6 +20,7 @@ include 'views/partials/header.php';
         <table>
             <thead>
                 <tr>
+                    <th>Id Utilisateur</th>
                     <th>Nom</th>
                     <th>Prenom</th>
                     <th>Email</th>
@@ -29,6 +30,7 @@ include 'views/partials/header.php';
             <tbody>
                 <?php foreach ($utilisateurArray as $utilisateur) : ?>
                     <tr>
+                        <td><?= $utilisateur['id_utilisateur'] ?></td>
                         <td><?= htmlspecialchars($utilisateur['nom']); ?></td>
                         <td><?= htmlspecialchars($utilisateur['prenom']); ?></td>
                         <td><?= htmlspecialchars($utilisateur['email']); ?></td>

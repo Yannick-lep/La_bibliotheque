@@ -1,30 +1,51 @@
 <?php
-include PHP_ROOT .'/views/partials/header.php'; ?>
-<h1 class="titre">Liste des livres empruntés</h1>
+include PHP_ROOT . '/views/partials/header.php';
+?>
+
+<h1 class="title">Liste des livres empruntés</h1>
 
 <?php if (empty($livres)): ?>
     <p>Vous n'avez aucun livre emprunté actuellement.</p>
-    <?php else: ?>
-        <table>
-            <thead>
-                <tr>
-                    <th>Titre</th>
-                    <th>Auteur</th>
-                    <th>Date d'emprunt</th>
+<?php else: ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Date d'emprunt</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($livres as $livre): ?>
+                <?php
+                // Date d'emprunt
+                $dateEmprunt = new DateTime($livre['date_sortie']);
+
+                // Date de retour = +1 mois
+                $dateRetour = clone $dateEmprunt;
+                $dateRetour->modify('+1 month');
+
+                // Vérifier si le livre est en retard
+                $en_retard = $dateRetour < new DateTime();
+                ?>
+                <tr class="<?= $en_retard ? 'retard' : '' ?>">
+                    <td><?= htmlspecialchars($livre['titre']) ?></td>
+                    <td><?= htmlspecialchars($livre['auteur']) ?></td>
+                    <td>
+                        <?= htmlspecialchars($dateEmprunt->format('Y/m/d')) ?><br>
+                        <small>
+                            Pensez à rendre ce livre avant le <?= $dateRetour->format('Y/m/d'); ?>
+                            <?php if ($en_retard): ?>
+                                <strong>— En retard</strong>
+                            <?php endif; ?>
+                        </small>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($livres as $livre): ?>
-                    <?php
-                    $en_retard = $livre['date_rendu'] && strtotime($livre['date_rendu']) < time();
-                    ?>
-                    <tr class="<?= $retard ? 'retard' : '' ?>">
-                        <td><?=  htmlspecialchars($livre['titre']) ?></td>
-                        <td><?=  htmlspecialchars($livre['auteur']) ?></td>
-                        <td><?=  htmlspecialchars($livre['date_sortie']) ?></td>
-                    </tr>
-                    <?php endforeach; ?>
-            </tbody>
-        </table>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 <?php endif; ?>
-<?php include PHP_ROOT . '/views/partials/footer.php'; ?>
+
+<?php
+include PHP_ROOT . '/views/partials/footer.php';
+?>

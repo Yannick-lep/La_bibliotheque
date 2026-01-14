@@ -21,6 +21,10 @@ docker compose up -d --build
 
         [text](datas/database.sql)
 
+    Ajouter un jeu de données de test
+
+        [text](datas/database-donnees.sql)
+
 ### Ensuite aller dans un navigateur sur l'url
 
     http://localhost:8080

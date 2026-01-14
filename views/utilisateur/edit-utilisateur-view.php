@@ -1,7 +1,7 @@
 <?php
 include PHP_ROOT . '/views/partials/header.php';
 ?>
-<h1>editer un utilisateur</h1>
+<h1 class="title">Editer un utilisateur</h1>
 
 <?php if (!empty($errors)) : ?>
     <div>
@@ -39,6 +39,7 @@ include PHP_ROOT . '/views/partials/header.php';
         <select name="role" id="role">
             <option value="abonne" selected>Abonne</option>
             <option value="employe">Employe</option>
+            <option value="admin">Administrateur</option>
         </select>
     </div>
     <div>
