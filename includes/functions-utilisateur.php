@@ -37,7 +37,7 @@ function ajoutUtilisateur($pdo, $nomParam, $prenomParam, $emailParam, $passwordP
 
 function updateUtilisateur($pdo, $nomParam, $prenomParam, $emailParam, $passwordParam, $idParam)
 {
-    $sql = "UDATE utilisateur
+    $sql = "UPDATE utilisateur
         SET nom = :nom, prenom = :prenom, email = :email, password = :password
         WHERE id_utilisateur = :id";
     $stmt = $pdo->prepare($sql);
@@ -55,8 +55,11 @@ function updateUtilisateur($pdo, $nomParam, $prenomParam, $emailParam, $password
 function updateUtilisateurSansPassword($pdo, $nomParam, $prenomParam, $emailParam, $idParam)
 {
     $sql = "UPDATE utilisateur
-        SET nom = :nom, prenom = :prenom, email = :email
+        SET nom = :nom,
+         prenom = :prenom,
+          email = :email
         WHERE id_utilisateur = :id";
+
     $stmt = $pdo->prepare($sql);
     $updateBool = $stmt->execute([
         ':nom' => $nomParam,
@@ -68,8 +71,15 @@ function updateUtilisateurSansPassword($pdo, $nomParam, $prenomParam, $emailPara
 }
 function supprimerUtilisateur($pdo, $id)
 {
-    $stmt = $pdo->prepare("DELETE FROM utilisateur WHERE id_utilisateur = :id");
+    $sql = "DELETE FROM utilisateur WHERE id-utilisateur = :id";
+    $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $suppResult = $stmt->execute();
-    return $suppResult;
+   
+    return $stmt->execute();
+}
+
+function compterUtilisateurs(PDO $pdo)
+{
+    $sql = "SELECT COUNT(*) FROM utilisateur";
+    return (int) $pdo->query($sql)->fetchColumn();
 }
