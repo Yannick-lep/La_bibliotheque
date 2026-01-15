@@ -1,6 +1,6 @@
 <?php require PHP_ROOT . '/views/partials/header.php'; ?>
 
-<h1 class="title">Liste de emprunts</h1>
+<h1 class="title">Liste des emprunts</h1>
 
 <div class="button">
     <a href="?page=add-emprunts">Ajouter un emprunt</a>
