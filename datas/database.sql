@@ -37,5 +37,9 @@ CREATE TABLE emprunt(
     date_rendu date DEFAULT NULL,
     date_reservation date NOT NULL,
     statut varchar(50), 
-    PRIMARY KEY (id_emprunt)
+    PRIMARY KEY (id_emprunt),
+    KEY `id_utilisateur` (`id_utilisateur`),
+    KEY `id_livre`(`id_livre`),
+    CONSTRAINT `emprunt_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`) ON DELETE CASCADE,
+    CONSTRAINT `emprunt_ibfk_2` FOREIGN KEY (`id_livre`) REFERENCES `livre` (`id_livre`) ON DELETE CASCADE
 ) ENGINE=INNODB;
