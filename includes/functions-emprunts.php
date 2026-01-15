@@ -74,7 +74,8 @@ function updateEmprunt($pdo, $emprunt)
     return $state;
 }
 
-function getEmpruntsUtilisateur($pdo, $id_utilisateur) {
+function getEmpruntsUtilisateur($pdo, $id_utilisateur)
+{
     $sql = "SELECT 
     e.id_emprunt,
     l.id_livre,
@@ -128,7 +129,7 @@ function validateRetourEmprunt($pdo, $idEmprunt)
 {
     $sql = "UPDATE emprunt SET date_rendu = NOW() WHERE id_emprunt = :id_emprunt";
     $stmt = $pdo->prepare($sql);
-    $state = $stmt->execute( [
+    $state = $stmt->execute([
         ':id_emprunt' => $idEmprunt
     ]);
 
@@ -139,7 +140,7 @@ function validateDepartEmprunt($pdo, $idEmprunt)
 {
     $sql = "UPDATE emprunt SET date_sortie = NOW() WHERE id_emprunt = :id_emprunt";
     $stmt = $pdo->prepare($sql);
-    $state = $stmt->execute( [
+    $state = $stmt->execute([
         ':id_emprunt' => $idEmprunt
     ]);
 
@@ -161,4 +162,23 @@ function getEmpruntsEnAttente($pdo)
     $emprunts = $stmt->fetchAll();
 
     return $emprunts;
+}
+
+function getHistoriqueEmpruntsUtilisateur(PDO $pdo, int $id_utilisateur, int $limit = 5)
+{
+    $sql = "
+    SELECT l.titre, l.auteur, e.date_sortie, e.date_rendu, e.statut
+    FROM emprunt e
+    JOIN livre l ON l.id_livre = e.id_livre
+    WHERE e.id_utilisateur = :id_utilisateur and date_sortie IS NOT NULL AND date_rendu IS NOT NULL
+    ORDER BY e.date_sortie DESC
+    LIMIT :limit
+    ";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }

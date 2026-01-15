@@ -51,6 +51,38 @@ include PHP_ROOT . '/views/partials/header.php';
             <?php endforeach; ?>
         </tbody>
     </table>
+    <form method="post" action="?page=mes-livres">
+        <input type="submit" value="historique" name="envoyer">
+    </form>
+ <?php endif; ?>
+    <?php if (!empty($historique)): ?>
+    <h2 class="title">Historique de mes emprunts</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Date d'emprunt</th>
+                <th>Date de retour</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($historique as $livre): ?>
+                <?php
+                    $dateEmprunt = new DateTime($livre['date_sortie']);
+                    $dateRetour = $livre['date_rendu'] ? new DateTime($livre['date_rendu']) : null;
+                ?>
+                <tr>
+                    <td><?= htmlspecialchars($livre['titre']) ?></td>
+                    <td><?= htmlspecialchars($livre['auteur']) ?></td>
+                    <td><?= $dateEmprunt->format('Y/m/d') ?></td>
+                    <td><?= $dateRetour ? $dateRetour->format('Y/m/d') : '-' ?></td>
+                    <td><?= htmlspecialchars($livre['statut']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 <?php endif; ?>
 
 <?php
