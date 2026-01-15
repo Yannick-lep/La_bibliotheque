@@ -64,7 +64,6 @@ include PHP_ROOT . '/views/partials/header.php';
                 <th>Auteur</th>
                 <th>Date d'emprunt</th>
                 <th>Date de retour</th>
-                <th>Statut</th>
             </tr>
         </thead>
         <tbody>
@@ -78,7 +77,6 @@ include PHP_ROOT . '/views/partials/header.php';
                     <td><?= htmlspecialchars($livre['auteur']) ?></td>
                     <td><?= $dateEmprunt->format('Y/m/d') ?></td>
                     <td><?= $dateRetour ? $dateRetour->format('Y/m/d') : '-' ?></td>
-                    <td><?= htmlspecialchars($livre['statut']) ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
