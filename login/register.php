@@ -1,5 +1,5 @@
 <?php
-require PHP_ROOT.'/includes/functions-utilisateur.php';
+require PHP_ROOT . '/includes/functions-utilisateur.php';
 
 $errors = [];
 $utilisateur = [];
@@ -16,6 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     if ($utilisateur['password'] !== $password_confirm)
         $errors[] = 'Les mots de passe ne correspondent pas !';
     else {
+        // Hashage sécurisé du mot de passe
+
+        // $utilisateur['password'] = password_hash($utilisateur['password'], PASSWORD_DEFAULT);
+        $utilisateur['password'] = md5($utilisateur['password']);
+
         $state = register_user($pdo, $utilisateur);
 
         if ($state['success'] === true) {
