@@ -5,6 +5,7 @@ include 'includes/functions-emprunts.php';
 $error = '';
 $searchTerm = '';
 $livres = [];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['search-button'])) {
         $searchTerm = trim($_POST['search'] ?? '');
@@ -16,6 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (isset($_POST['emprunter-button'])) {
+        $searchTerm = trim($_POST['search'] ?? '');
+        if ($searchTerm !== '') {
+            $livres = searchLivres($pdo, $searchTerm);
+        }
+
         $id_livre = intval($_POST['id_livre'] ?? 0);
         if (is_abonne()) {
 

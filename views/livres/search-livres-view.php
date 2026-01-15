@@ -31,7 +31,8 @@
                         <br><strong><a href="?page=login">Connectez-vous pour emprunter</a></strong>
                     <?php } else { ?>
                         <form method="POST" style="margin-top: 8px;">
-                            <input type="hidden" name="id_livre" value="<?php echo $livre['id_livre']; ?>">
+                            <input type="hidden" name="id_livre" value="<?= $livre['id_livre']; ?>">
+                            <input type="hidden" name="search" value="<?= $searchTerm; ?>">
                             <button type="submit" name="emprunter-button" class="btn btn-primary">
                                 Emprunter
                             </button>
