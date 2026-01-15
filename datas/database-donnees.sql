@@ -83,39 +83,39 @@ INSERT INTO livre (auteur, titre, resume, genre) VALUES
 ('King','Le Fleau','Epidemie mondiale','Horreur'),
 ('Verne','Michel Strogoff','Mission en Russie','Aventure');
 
-INSERT INTO emprunt (id_livre, id_utilisateur, date_sortie, date_rendu, statut) VALUES
-(1,5,'2025-01-02',NULL,'en cours'),
-(2,5,'2025-01-05',NULL,'en cours'),
-(3,6,'2025-01-10','2025-01-20','rendu'),
-(4,6,'2025-01-12',NULL,'en cours'),
+INSERT INTO emprunt (id_livre, id_utilisateur, date_sortie, date_rendu, date_reservation,statut) VALUES
+(1,5,'2025-01-02',NULL,'2025-01-02','en cours'),
+(2,5,'2025-01-05',NULL,'2025-01-05','en cours'),
+(3,6,'2025-01-10','2025-01-20','2025-01-10','rendu'),
+(4,6,'2025-01-12',NULL,'2025-01-12','en cours'),
 
-(5,7,NULL,NULL,'reserve'),
-(6,8,'2025-01-01','2025-01-15','rendu'),
-(7,8,'2025-01-03',NULL,'en cours'),
+(5,7,NULL,NULL,'2025-01-31','reserve'),
+(6,8,'2025-01-01','2025-01-15','2025-01-01','rendu'),
+(7,8,'2025-01-03',NULL,'2025-01-03','en cours'),
 
-(8,9,'2025-01-07',NULL,'en cours'),
-(9,9,'2025-01-09',NULL,'en cours'),
-(10,9,'2025-01-11',NULL,'en cours'),
+(8,9,'2025-01-07',NULL,'2025-01-07','en cours'),
+(9,9,'2025-01-09',NULL,'2025-01-09','en cours'),
+(10,9,'2025-01-11',NULL,'2025-01-11','en cours'),
 
-(11,10,NULL,NULL,'reserve'),
+(11,10,NULL,NULL,'2025-01-26','reserve'),
 
-(12,11,'2024-12-15','2025-01-05','rendu'),
-(13,11,'2025-01-08',NULL,'en cours'),
+(12,11,'2024-12-15','2025-01-05','2024-12-15','rendu'),
+(13,11,'2025-01-08',NULL,'2025-01-08','en cours'),
 
-(14,12,'2025-01-02','2025-01-18','rendu'),
-(15,12,NULL,NULL,'reserve'),
+(14,12,'2025-01-02','2025-01-18','2025-01-02','rendu'),
+(15,12,NULL,NULL,'2025-01-17','reserve'),
 
-(16,13,'2025-01-01',NULL,'en cours'),
-(17,13,'2025-01-05',NULL,'en cours'),
-(18,13,'2025-01-07',NULL,'en cours'),
-(19,13,'2025-01-09',NULL,'en cours'),
-(20,13,'2025-01-11',NULL,'en cours'),
+(16,13,'2025-01-01',NULL,'2025-01-01','en cours'),
+(17,13,'2025-01-05',NULL,'2025-01-05','en cours'),
+(18,13,'2025-01-07',NULL,'2025-01-07','en cours'),
+(19,13,'2025-01-09',NULL,'2025-01-09','en cours'),
+(20,13,'2025-01-11',NULL,'2025-01-11','en cours'),
 
-(21,14,'2025-01-04','2025-01-20','rendu'),
-(22,15,NULL,NULL,'reserve'),
-(23,16,'2025-01-06',NULL,'en cours'),
+(21,14,'2025-01-04','2025-01-20','2025-01-04','rendu'),
+(22,15,NULL,NULL,'2026-01-01','reserve'),
+(23,16,'2025-01-06',NULL,'2025-01-06','en cours'),
 
-(24,17,'2025-01-08','2025-01-19','rendu'),
-(25,18,'2025-01-10',NULL,'en cours'),
-(26,19,NULL,NULL,'reserve'),
-(27,20,'2025-01-12',NULL,'en cours');
+(24,17,'2025-01-08','2025-01-19','2025-01-08','rendu'),
+(25,18,'2025-01-10',NULL,'2025-01-10','en cours'),
+(26,19,NULL,NULL,'2026-01-17','reserve'),
+(27,20,'2025-01-12',NULL,'2025-01-12','en cours');

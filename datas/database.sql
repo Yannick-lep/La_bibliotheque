@@ -35,6 +35,7 @@ CREATE TABLE emprunt(
     id_utilisateur int DEFAULT NULL,
     date_sortie date DEFAULT NULL,
     date_rendu date DEFAULT NULL,
+    date_reservation date NOT NULL,
     statut varchar(50), 
     PRIMARY KEY (id_emprunt)
 ) ENGINE=INNODB;
