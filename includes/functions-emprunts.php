@@ -95,6 +95,19 @@ function getEmpruntsUtilisateur($pdo, $id_utilisateur)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function countEmpruntsUtilisateur($pdo, $id_utilisateur)
+{
+    $sql = "SELECT COUNT(*) as total_emprunts
+            FROM emprunt
+            WHERE id_utilisateur = :id_utilisateur";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetch();
+
+    return $result['total_emprunts'];
+}
+
 function getEmpruntsEnCoursLivre($pdo, $idLivre)
 {
     $sql = "SELECT count(*) as count_emprunts
