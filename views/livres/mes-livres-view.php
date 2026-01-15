@@ -17,34 +17,37 @@ include PHP_ROOT . '/views/partials/header.php';
         </thead>
         <tbody>
             <?php foreach ($livres as $livre): ?>
-                <?php
-                if ($livre['date_sortie'] !== null) {
-                    // Date d'emprunt
-                    $dateEmprunt = new DateTime($livre['date_sortie']);
-
-                    // Date de retour = +1 mois
-                    $dateRetour = clone $dateEmprunt;
-                    $dateRetour->modify('+1 month');
-
-                    // Vérifier si le livre est en retard
-                    $en_retard = $dateRetour < new DateTime();
-                }
-                ?>
-                <tr class="<?= $en_retard ? 'retard' : '' ?>">
+                <tr>
                     <td><?= htmlspecialchars($livre['titre']) ?></td>
                     <td><?= htmlspecialchars($livre['auteur']) ?></td>
                     <td>
-                        <?php if ($livre['date_sortie'] === null) { ?>
-                            <small>Réservé</small>
                         <?php
-                        } else {
-                            htmlspecialchars($dateEmprunt->format('Y/m/d')) ?><br>
+                        if ($livre['date_sortie'] !== null) {
+                            // Date d'emprunt
+                            $dateEmprunt = new DateTime($livre['date_sortie']);
+
+                            // Date de retour = +1 mois
+                            $dateRetour = clone $dateEmprunt;
+                            $dateRetour->modify('+1 month');
+
+                            // Vérifier si le livre est en retard
+                            $en_retard = $dateRetour < new DateTime();
+                            ?>
                             <small>
-                                Pensez à rendre ce livre avant le <?= $dateRetour->format('Y/m/d'); ?>
+                                Remis le <?= htmlspecialchars($dateEmprunt->format('Y/m/d')) ?><br>
                                 <?php if ($en_retard): ?>
-                                    <strong>— En retard</strong>
+                                    <strong>
+                                        Ce livre devait etre rendu avant le <?= $dateRetour->format('Y/m/d'); ?>
+                                    </strong><br>
+                                    <strong class="error">Une pénalité de Retard pourrait être appliquée.</strong>
+                                <?php else: ?>
+                                    <strong>
+                                        Pensez à rendre ce livre avant le <?= $dateRetour->format('Y/m/d'); ?>
+                                    </strong>
                                 <?php endif; ?>
                             </small>
+                        <?php } else { ?>
+                            <small>Réservé</small>
                         <?php } ?>
                     </td>
                 </tr>
@@ -54,8 +57,8 @@ include PHP_ROOT . '/views/partials/header.php';
     <form method="post" action="?page=mes-livres">
         <input type="submit" value="historique" name="envoyer">
     </form>
- <?php endif; ?>
-    <?php if (!empty($historique)): ?>
+<?php endif; ?>
+<?php if (!empty($historique)): ?>
     <h2 class="title">Historique de mes emprunts</h2>
     <table>
         <thead>
@@ -69,8 +72,8 @@ include PHP_ROOT . '/views/partials/header.php';
         <tbody>
             <?php foreach ($historique as $livre): ?>
                 <?php
-                    $dateEmprunt = new DateTime($livre['date_sortie']);
-                    $dateRetour = $livre['date_rendu'] ? new DateTime($livre['date_rendu']) : null;
+                $dateEmprunt = new DateTime($livre['date_sortie']);
+                $dateRetour = $livre['date_rendu'] ? new DateTime($livre['date_rendu']) : null;
                 ?>
                 <tr>
                     <td><?= htmlspecialchars($livre['titre']) ?></td>
