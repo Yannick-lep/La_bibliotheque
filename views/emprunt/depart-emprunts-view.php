@@ -1,4 +1,4 @@
-<?php require PHP_ROOT.'/views/partials/header.php'; ?>
+<?php require PHP_ROOT . '/views/partials/header.php'; ?>
 
 <h1 class="title">Valider un emprunt</h1>
 
@@ -17,15 +17,22 @@
         <tbody>
             <?php foreach ($emprunts as $emprunt) { ?>
                 <tr>
-                    <td><?= $emprunt['nom'].' '.$emprunt['prenom'] ?></td>
+                    <td><?= $emprunt['nom'] . ' ' . $emprunt['prenom'] ?></td>
                     <td><?= $emprunt['titre'] ?></td>
-                    <th>
+                    <td>
                         <a href="?page=validate-depart-emprunts&id=<?= $emprunt['id_emprunt'] ?>">Valider ce départ</a>
-                    </th>
+                        <?php
+                        $dateReservation = new DateTime($emprunt['date_reservation']);
+                        $dateRetourPrevue = clone $dateReservation;
+                        $dateRetourPrevue->modify('+1 month'); // ou la durée réelle de prêt
+                        $en_retard = new DateTime() > $dateRetourPrevue;
+                        if ($en_retard) { ?>
+                            <a href="?page=annulation-emprunts&id=<?= $emprunt['id_emprunt'] ?>" style="background-color: lightcoral" ;>Annuler</a>
+                        <?php } ?>
+                    </td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
 <?php } ?>
-
-<?php require PHP_ROOT.'/views/partials/footer.php'; ?>
+<?php require PHP_ROOT . '/views/partials/footer.php'; ?>

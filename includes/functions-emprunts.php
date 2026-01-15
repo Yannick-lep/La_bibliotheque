@@ -161,7 +161,7 @@ function validateDepartEmprunt($pdo, $idEmprunt)
 
 function getEmpruntsEnAttente($pdo)
 {
-    $sql = "SELECT e.id_emprunt, e.date_sortie, e.id_livre, e.id_utilisateur, u.nom, u.prenom, l.titre
+    $sql = "SELECT e.id_emprunt, e.date_reservation , e.date_sortie, e.id_livre, e.id_utilisateur, u.nom, u.prenom, l.titre
             FROM emprunt e
             LEFT JOIN utilisateur u
             ON u.id_utilisateur = e.id_utilisateur
