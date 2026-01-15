@@ -18,27 +18,34 @@ include PHP_ROOT . '/views/partials/header.php';
         <tbody>
             <?php foreach ($livres as $livre): ?>
                 <?php
-                // Date d'emprunt
-                $dateEmprunt = new DateTime($livre['date_sortie']);
+                if ($livre['date_sortie'] !== null) {
+                    // Date d'emprunt
+                    $dateEmprunt = new DateTime($livre['date_sortie']);
 
-                // Date de retour = +1 mois
-                $dateRetour = clone $dateEmprunt;
-                $dateRetour->modify('+1 month');
+                    // Date de retour = +1 mois
+                    $dateRetour = clone $dateEmprunt;
+                    $dateRetour->modify('+1 month');
 
-                // Vérifier si le livre est en retard
-                $en_retard = $dateRetour < new DateTime();
+                    // Vérifier si le livre est en retard
+                    $en_retard = $dateRetour < new DateTime();
+                }
                 ?>
                 <tr class="<?= $en_retard ? 'retard' : '' ?>">
                     <td><?= htmlspecialchars($livre['titre']) ?></td>
                     <td><?= htmlspecialchars($livre['auteur']) ?></td>
                     <td>
-                        <?= htmlspecialchars($dateEmprunt->format('Y/m/d')) ?><br>
-                        <small>
-                            Pensez à rendre ce livre avant le <?= $dateRetour->format('Y/m/d'); ?>
-                            <?php if ($en_retard): ?>
-                                <strong>— En retard</strong>
-                            <?php endif; ?>
-                        </small>
+                        <?php if ($livre['date_sortie'] === null) { ?>
+                            <small>Réservé</small>
+                        <?php
+                        } else {
+                            htmlspecialchars($dateEmprunt->format('Y/m/d')) ?><br>
+                            <small>
+                                Pensez à rendre ce livre avant le <?= $dateRetour->format('Y/m/d'); ?>
+                                <?php if ($en_retard): ?>
+                                    <strong>— En retard</strong>
+                                <?php endif; ?>
+                            </small>
+                        <?php } ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

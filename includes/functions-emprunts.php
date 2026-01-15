@@ -54,6 +54,16 @@ function addEmprunt($pdo, $emprunt)
     return $state;
 }
 
+function addEmpruntAbonne($pdo, $emprunt)
+{
+    $sql = "INSERT INTO emprunt (id_livre, id_utilisateur, statut)
+            VALUES (:id_livre, :id_utilisateur, :statut )";
+    $stmt = $pdo->prepare($sql);
+    $state = $stmt->execute($emprunt);
+
+    return $state;
+}
+
 function updateEmprunt($pdo, $emprunt)
 {
     $sql = "UPDATE emprunt SET id_livre = :id_livre, id_utilisateur = :id_utilisateur, date_sortie =:date_sortie, date_rendu = :date_rendu, statut = :statut
@@ -82,6 +92,19 @@ function getEmpruntsUtilisateur($pdo, $id_utilisateur) {
     $stmt->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getEmpruntsEnCoursLivre($pdo, $idLivre)
+{
+    $sql = "SELECT count(*) as count_emprunts
+            FROM emprunt
+            WHERE date_sortie IS NOT NULL OR (date_sortie IS NOT NULL AND date_rendu IS NULL)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    $emprunts = $stmt->fetch();
+
+    return $emprunts['count_emprunts'];
 }
 
 function getEmpruntsEnCours($pdo)
