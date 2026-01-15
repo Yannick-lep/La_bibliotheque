@@ -32,6 +32,7 @@ $routes_admin = [
 $routes_employe = [
     'depart-emprunts' => 'emprunts/depart-emprunts.php',
     'retour-emprunts' => 'emprunts/retour-emprunts.php',
+    'annulation-emprunts' => 'emprunts/annulation-emprunts.php',
     'validate-retour-emprunts' => 'emprunts/validate-retour-emprunts.php',
     'validate-depart-emprunts' => 'emprunts/validate-depart-emprunts.php'
 ];
