@@ -56,8 +56,8 @@ function addEmprunt($pdo, $emprunt)
 
 function addEmpruntAbonne($pdo, $emprunt)
 {
-    $sql = "INSERT INTO emprunt (id_livre, id_utilisateur, statut)
-            VALUES (:id_livre, :id_utilisateur, :statut )";
+    $sql = "INSERT INTO emprunt (id_livre, id_utilisateur, date_reservation, statut)
+            VALUES (:id_livre, :id_utilisateur, NOW(), :statut )";
     $stmt = $pdo->prepare($sql);
     $state = $stmt->execute($emprunt);
 
