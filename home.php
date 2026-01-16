@@ -42,7 +42,7 @@
         <h2 class="title">conditions d'emprunt</h2>
         <ul>
             <li>Chaque utilisateur peut emprunter <strong>jusqu'à 5 livres</strong> simultanément</li>
-            <li>La durée maximal de prêt est de <trong>1 mois</trong> à partir de la date de l'emprunt</li>
+            <li>La durée maximal de prêt est de <strong>1 mois</strong> à partir de la date de l'emprunt</li>
             <li>Les retards peuvent entrainer des pénalités</li>
             <li>Les réservations en ligne doivent être récupérées pendant les horaires de retrait sous un délai de 1 mois sous peine d'annulation de la réservation.</li>
         </ul>
