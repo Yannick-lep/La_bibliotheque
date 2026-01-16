@@ -1,8 +1,6 @@
 # La_bibliotheque
-Gestionnaire de bibliothèque
 
-#  Système de gestion de bibliothèque
-
+Implémentation d'un gestionnaire de bibliothèque.
 Application web développée en PHP permettant de gérer un catalogue de livres,
 les emprunts/retours et les utilisateurs.
 
@@ -11,7 +9,6 @@ les emprunts/retours et les utilisateurs.
 - Gérer les emprunts et retours
 - Rechercher des livres par mots clés
 - Gérer les utilisateurs
-- Assurer la sécurité des données
 
 ##  Technologies utilisées
 - PHP 8
@@ -20,10 +17,20 @@ les emprunts/retours et les utilisateurs.
 - HTML / CSS
 - Git / GitHub
 
-
 ##  Comptes de test
 
-En utilisant la base de données disponibles dans le fichier (file)datas
-- Admin : admin@test.com / admin123
-- Utilisateur : user@test.com / user123
+En utilisant la base de données d'exemple disponibles dans le fichier
+```bash
+datas/database-donnees.sql
+```
+- Un compte administrateur est défini :
+    paul.martin@mail.com / hash1
+
+- Trois comptes Employe sont définis :
+    dont : sophie.durand@mail.com / hash2
+
+- 36 comptes Utilisateurs
+    dont : camille.roux@mail.com / hash12
+
+- 200 livres
 
